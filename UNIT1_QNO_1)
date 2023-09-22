@@ -1,0 +1,227 @@
+1)
+Problem Statement
+
+
+
+You are developing a word analysis program for a language processing company.
+The program needs to count the number of words in a given text that start with a specific letter. 
+The program will take user input for the size of the word array, the words in the array, and the specific letter to be analyzed. 
+It will then traverse through the array and output the count of words that start with the specified letter.
+
+
+
+Note: This kind of question will be helpful in clearing Infosys recruitment.
+
+Input format :
+The first line contains an integer 'size' representing the size of the word array.
+
+The next 'size' lines contain words, each word separated by a newline character.
+
+The last line contains a single character 'letter' representing the specific letter to be analyzed.
+
+Output format :
+The output should display the updated string after the insertion, separated by spaces.
+
+Code constraints :
+The size of the word array should be a positive integer.
+
+Each word in the array should consist of alphabetic characters only.
+
+The length of each word should not exceed 100 characters.
+
+The specific letter to be analyzed should be a single character.
+
+Sample test cases :
+Input 1 :
+5
+apple
+banana
+avocado
+grape
+orange
+a
+Output 1 :
+Number of strings starting with the letter a : 2
+Input 2 :
+3
+cat
+dog
+elephant
+e
+Output 2 :
+Number of strings starting with the letter e : 1
+
+soln:-
+
+
+#include<iostream>
+#include<string>
+using namespace std;
+int main(){
+    int size;
+    cout<<"Number of strings starting with the letter ";
+    cin>>size;
+    string arr[size];
+    char letter;
+   
+    int count=0;
+    for(int i=0;i<size;i++){
+        cin>>arr[i];
+    }
+    cin>>letter;
+    for(int i=0;i<size;i++){
+        string a=arr[i];
+        if (a[0]==letter){
+            count++;
+        }
+    }
+    cout<<letter<<" : "<<count;
+    return 0;
+    
+}
+
+
+
+
+2)
+Problem Statement
+
+
+
+You are a skilled software engineer working at a renowned financial analysis company. Your company is renowned for its expertise in analyzing stock market data to provide valuable insights and recommendations to clients. As part of your role, you have been entrusted with developing a program that filters out negative stock prices from an array of daily closing prices.
+
+
+
+Note: This kind of question will be helpful in clearing TCS recruitment.
+
+Input format :
+The first line should include the size of the array, which represents the number of closing prices.
+
+The second line should include the closing prices of the stocks, separated by spaces.
+
+Output format :
+The program will exhibit a line presenting the updated array, consisting exclusively of positive closing prices
+
+
+
+Refer to the sample input and output formatting specifications.
+
+Code constraints :
+The array size is limited to a maximum of 100.
+
+The closing prices can be positive, negative, or zero.
+
+The closing prices are represented as double values.
+
+Sample test cases :
+Input 1 :
+7
+-2.3 5.6 7.8 -4.5 9.1 -6.7 3.2
+Output 1 :
+Updated Array with Positive Closing Prices: 5.6 7.8 9.1 3.2 
+Input 2 :
+5
+10.5 -5.2 8.7 -3.9 12.3
+Output 2 :
+Updated Array with Positive Closing Prices: 10.5 8.7 12.3 
+
+
+
+soln:-
+
+#include<iostream>
+using namespace std;
+
+int main(){
+    int size;
+    float arr[100];
+    cin>>size;
+    cout<<"Updated Array with Positive Closing Prices: ";
+    for(int i=0;i<size;i++){
+        cin>>arr[i];
+        if(arr[i]>0){
+            cout<<arr[i]<<" ";
+        }
+        
+    }
+ return 0;
+}
+
+
+
+3)   Problem Statement
+
+
+
+Given an array of strings, write a program to traverse through the array and find the index of a specific string. The program should prompt the user to enter the string to be searched and then display the index if found or a message indicating that the string was not found.
+
+Input format :
+The first line of input consists of an integer representing the size of the array.
+
+The second line of input contains the strings of the array, separated by a line space.
+
+The last line of input contains the string to be searched.
+
+Output format :
+The output displays the index of the found string (if found) or a "String not found!" message.
+
+
+
+Refer to the sample output for the formatting specifications.
+
+Code constraints :
+Maximum size of the array (MAX_SIZE = 100)
+
+The size of the array should be a positive integer.
+
+Each string in the array can have a maximum length of 100 characters.
+
+The string to be searched can have a maximum length of 100 characters.
+
+String comparison is case-sensitive, so the search is case-sensitive.
+
+Sample test cases :
+Input 1 :
+3
+Apple
+Mango
+Banana
+Apple
+Output 1 :
+0
+Input 2 :
+2
+Pen
+Pencil
+Paper
+Output 2 :
+String not found!
+
+soln:-
+
+#include<iostream>
+#include<string>
+using namespace std;
+int main(){
+    int size;
+    cin>>size;
+    string arr[100];
+    for(int i=0;i<size;i++){
+        cin>>arr[i];
+    }
+    string name;
+    cin>>name;
+    bool b=0;
+    for(int i=0;i<size;i++){
+        string a=arr[i];
+        if (a==name){
+            b=1;
+            cout<<i;
+            break;
+        }
+        
+       
+    }
+    if(b==0)
+    cout<<"String not found!";
+}
