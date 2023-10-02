@@ -1,0 +1,155 @@
+Problem Statement
+
+
+
+You are tasked with implementing a program to manage a singly linked list. Each node in the linked list will store a string value. 
+
+
+
+Your goal is to write a function called insertNode() that inserts a new node at a specified position within the linked list. The position can be 1 (indicating insertion at the beginning), a positive integer (indicating insertion at the corresponding position), or a position greater than the size of the list (indicating appending at the end). 
+
+
+
+Once the insertion is completed, you need to print the contents of the updated linked list.
+
+
+
+Note: This is a sample question asked in a TCS interview.
+
+Input format :
+The first line of input consists of an integer n, denoting the number of strings to be inserted initially.
+
+The second line of input consists of n string values, separated by space for each node in the initial linked list.
+
+The third line of input consists of a string denoting the data to be inserted into the linked list, and an integer p, denoting the position where the new node is to be inserted.
+
+Output format :
+The first line of output should print the current linked list elements, separated by space.
+
+The next line of output should print the updated linked list elements, after the insertion, separated by space.
+
+
+
+Refer to the sample output for formatting specifications.
+
+Code constraints :
+1 <= n <= 100
+
+1 <= p <= n+1
+
+The string values in the linked list will have at most 100 characters.
+
+The position for insertion will be an integer between 1 and the size of the linked list + 1.
+
+Sample test cases :
+Input 1 :
+6
+A B C D E F
+G 7
+Output 1 :
+Current Linked List:
+A B C D E F 
+Updated Linked List:
+A B C D E F G 
+Input 2 :
+3
+Apple Orange Banana
+Mango 1
+Output 2 :
+Current Linked List:
+Apple Orange Banana 
+Updated Linked List:
+Mango Apple Orange Banana 
+Input 3 :
+0
+
+Watermelon 1
+Output 3 :
+Current Linked List:
+
+Updated Linked List:
+Watermelon 
+Input 4 :
+5
+Dog Cat Bird Fish Monkey
+Lion 6
+Output 4 :
+Current Linked List:
+Dog Cat Bird Fish Monkey 
+Updated Linked List:
+Dog Cat Bird Fish Monkey Lion 
+
+
+
+soln:-
+#include<iostream>
+#include<bits/stdc++.h>
+using namespace std;
+class node{
+	public:
+	string data;
+	node* next;
+	node(string val){
+		data=val;
+		next=NULL;
+	}
+};
+void insertattail(node* &head,string val){
+	node* n=new node(val);
+	if(head==NULL){
+		head=n;
+		return;
+		}
+	node* temp=head;
+	while(temp->next!=NULL){
+		temp=temp->next;
+	}
+	temp->next=n;
+}
+void insertatanyposition(node* &head,int pos,string k){
+	node* n=new node(k);
+	if(pos==1){
+		n->next=head;
+		head=n;
+		return;
+	}
+	int count=1;
+	node* temp=head;
+	while(count!=pos){
+		temp=temp->next;
+		count++;
+	}
+	
+	n->next=temp->next;
+	temp->next=n;
+	
+}
+void display(node* head){
+	node* temp=head;
+	while(temp!=NULL){
+		cout<<temp->data<<" ";
+		temp=temp->next;
+	}
+	cout<<endl;
+}
+int main(){
+	node* head=NULL;
+	int num;
+	cin>>num;
+	string a;
+	for(int i=0;i<num;i++){
+		cin>>a;
+		insertattail(head,a);
+	}
+	cout<<"current Linked list is: "<<endl;
+	display(head);
+	int pos;
+	string k;
+	cin>>pos>>k;
+	insertatanyposition(head,pos,k);
+	cout<<"After insertion linked list is: ";
+	display(head);
+	
+}
+
+
