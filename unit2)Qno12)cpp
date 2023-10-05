@@ -1,0 +1,120 @@
+Problem Statement
+
+
+
+Prackya wants to implement a function to delete the middle node of a singly linked list. She wants you to write a program that takes user input to construct a linked list, inserts nodes at the end, and then deletes the middle node if it exists. If the linked list has an even number of nodes, the function should delete the second middle node.
+
+
+
+For example, if the given linked list is 1->2->3->4->5 then the linked list should be modified to 1->2->4->5.
+
+For example, if the given linked list is 1->2->3->4->5->6, then it should be modified to 1->2->3->5->6.
+
+
+
+Note: This is a sample question asked in an AMCAT interview.
+
+Input format :
+The first line of input consists of the number of nodes in the linked list (numNodes)
+
+The second line of input consists of the values for each node, inserted at the end of the list.
+
+Output format :
+The output displays the original linked list before deleting the middle node.
+
+The updated linked list after deleting the middle node.
+
+
+
+Refer to the sample output for format specifications.
+
+Code constraints :
+1 <= numNodes <= 100
+
+-50000 <= values of nodes <= 50000
+
+Sample test cases :
+Input 1 :
+5
+1 2 3 4 5
+Output 1 :
+Original Linked List: 1 2 3 4 5 
+Updated Linked List: 1 2 4 5 
+Input 2 :
+6
+1 2 3 4 5 6
+Output 2 :
+Original Linked List: 1 2 3 4 5 6 
+Updated Linked List: 1 2 3 5 6 
+
+soln:-
+
+#include<bits/stdc++.h>
+
+using namespace std;
+class node{
+	public:
+		int  data;
+		node* next;
+		node(int val){
+			data=val;
+			next=NULL;
+		}
+		
+};
+void insertattail(node* &head,int val){
+	node* n=new node(val);
+	if(head==NULL){
+		head=n;
+		return;
+	}
+	node* temp=head;
+	while(temp->next!=NULL){
+		temp=temp->next;
+	}
+	temp->next=n;
+}
+void deletionatlast(node* &head,int x){
+	int count=2;
+
+	node* temp=head;
+	while(count!=x){
+		temp=temp->next;
+		count++;
+	}
+	
+        node* todelete=temp->next;
+		temp->next=temp->next->next;
+		delete todelete;
+	
+
+}
+
+void display(node* head){
+	node* temp=head;
+	while(temp!=NULL){
+		cout<<temp->data<<" ";
+		temp=temp->next;
+	}
+	cout<<endl;
+}
+int main(){
+	node* head=NULL;
+	int b;
+	cin>>b;
+	int x=((b/2)+1);
+	
+	int c;
+	for(int i=0;i<b;i++){
+		cin>>c;
+		insertattail(head,c);
+	}
+	cout<<"Original linked list"<<" ";
+	display(head);
+	cout<<endl;
+	
+	deletionatlast(head,x);
+	cout<<"Updated linked list"<<" ";
+	display(head);
+	
+}
