@@ -1,0 +1,97 @@
+Problem Statement
+
+
+
+You are working on a ticketing system for a popular music concert. The ticketing system uses a Queue data structure implemented using an array to manage incoming ticket requests. Each ticket request is represented by a unique identification number.
+
+
+
+Your task is to implement the Queue data structure and the associated functions to efficiently handle the ticket requests. 
+
+
+
+One of the requirements is to reverse the order of the first K ticket requests in the queue while keeping the order of the remaining ticket requests intact.
+
+
+
+The main functionalities of the ticketing system include:
+
+Enqueue: Add a ticket request to the end of the queue.
+Reverse First K Elements: Reverse the order of the first K ticket requests in the queue, using the queue implemented with an array.
+
+
+Example:
+
+Input: 
+
+4 // Total number of tickets
+
+2 // Number of tickets to be reversed
+
+1 2 3 4 // Unique identification if the ticket requests
+
+Output:
+
+2 1 3 4
+
+Input format :
+The first line of input consists of an integer N, representing the number of ticket requests in the queue.
+
+The second line consists of an integer K, representing the number of ticket requests to reverse.
+
+The third line consists of N space-separated integers, representing the unique identification numbers of the ticket requests in the queue.
+
+Output format :
+The output prints the updated order of the ticket requests after reversing the first K requests. The output is the space separated values.
+
+Code constraints :
+N, K >0
+
+The identification numbers of the ticket requests will be unique.
+
+Sample test cases :
+Input 1 :
+8
+3
+101 102 103 104 105 106 107 108
+Output 1 :
+103 102 101 104 105 106 107 108 
+Input 2 :
+10
+5
+10 20 30 40 50 60 70 80 90 100
+Output 2 :
+50 40 30 20 10 60 70 80 90 100 
+
+soln:-
+#include<iostream>
+#include<stack>
+#include<queue>
+using namespace std;
+int main(){
+	int n;
+	cin>>n;
+	queue<int> ans;
+	stack<int> p;
+	int k;
+	cin>>k;
+	for(int i=0;i<n;i++){
+		int a;
+		cin>>a;
+		ans.push(a);
+	}
+	for(int i=0;i<k;i++){
+		int element=ans.front();
+		ans.pop();
+		p.push(element);
+	}
+	while(!p.empty()){
+		cout<<p.top()<<" ";
+		p.pop();
+	}
+	for(int i=k;i<n;i++){
+		cout<<ans.front()<<" ";
+		ans.pop();
+	}
+}
+
